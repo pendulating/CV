@@ -1,0 +1,399 @@
+\documentclass[10pt,letterpaper]{report}
+
+\usepackage{fontspec}
+\setmainfont{GTZirkon}[
+    Path = fonts/ ,
+    UprightFont = *-Book,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic
+]
+
+%\usepackage[T1]{fontenc} % output T1 font encoding (8-bit) for accented characters as single glyph
+\usepackage[strict,autostyle]{csquotes} % smart and nestable quote marks
+\usepackage[USenglish]{babel} % regionalize hyphens, quote marks, etc automatically
+\usepackage{microtype}% improve text appearance with kerning, etc
+\usepackage{datetime} % enable formatting of date output
+\usepackage{tabto}    % make nice tabbing
+\usepackage{hyperref} % enable hyperlinks and pdf metadata
+\usepackage{geometry} % manually set page margins
+\usepackage{enumitem} % enumerate with [resume] option
+\usepackage{titlesec} % allow custom section fonts
+\usepackage{setspace} % custom line spacing
+
+
+
+% what is your name?
+\newcommand{\myname}{{Matt Franchi}}
+
+% Add this near the top with other configuration settings
+\newif\ifshowresearch
+\showresearchfalse  % Set to \showresearchtrue to show research area and skills
+
+% select default typefaces
+%\usepackage{ebgaramond} % document's serif typeface
+%\usepackage{tgheros}    % document's sans serif typeface
+
+% how far to tab for list items with left-aligned date: different fonts need different widths
+\newcommand{\listtabwidth}{1.7cm}
+
+% define font to use as document's title
+\newcommand{\namefont}[1]{{\normalfont\bfseries\Huge{#1}}}
+
+% set section heading fonts and before/after spacing
+%SetTracking{encoding=*, family=\sfdefault}{30} % increase sans serif headings tracking
+\titleformat{\section}{\lsstyle\bfseries\uppercase}{}{}{}{}
+\titlespacing{\section}{0pt}{30pt plus 4pt minus 4pt}{8pt plus 2pt minus 2pt}
+
+% set subsection heading fonts and before/after spacing
+\titleformat{\subsection}{\lsstyle\bfseries}{}{}{}{}
+\titlespacing{\subsection}{0pt}{16pt plus 4pt minus 4pt}{4pt plus 2pt minus 2pt}
+
+% set page margins (assumes letter paper)
+\geometry{body={6.5in, 9.0in},
+    left=1.0in,
+    top=1.0in}
+
+% prevent paragraph indentation
+\setlength\parindent{0em}
+
+% set line spacing
+\setstretch{1}
+
+% define space between list items
+\newcommand{\listitemspace}{0.25em}
+
+% make unordered lists without bullets and use compact spacing
+\renewenvironment{itemize}
+{\begin{list}{}{\setlength{\leftmargin}{0em}
+                \setlength{\parskip}{0em}
+                \setlength{\itemsep}{\listitemspace}
+                \setlength{\parsep}{\listitemspace}}}
+{\end{list}}
+
+% make tabbed lists so content is left-aligned next to years
+\TabPositions{\listtabwidth}
+\newlist{tablist}{description}{3}
+\setlist[tablist]{leftmargin=\listtabwidth,
+    labelindent=0em,
+    topsep=0em,
+    partopsep=0em,
+    itemsep=\listitemspace,
+    parsep=\listitemspace,
+    font=\normalfont}
+
+% print only the month and year when using \today
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
+
+% define hyperlink appearance and metadata for pdf properties
+\hypersetup{
+    colorlinks  = true,
+    urlcolor    = black,
+    citecolor   = black,
+    linkcolor   = black,
+    pdfauthor   = {\myname},
+    pdfkeywords = {},
+    pdftitle    = {\myname: Curriculum Vitae},
+    pdfsubject  = {Curriculum Vitae},
+    pdfpagemode = UseNone
+}
+
+\begin{document}
+    \raggedright{}
+
+    % display your name as the document title
+    \namefont{\myname}
+
+    % affiliation and contact info blocks
+    \vspace{1em}
+    \begin{minipage}[t]{0.6\textwidth}
+        % current primary affiliation, left-aligned
+         %Ann S. Bowers College of Computing and Information Science, \\
+         Cornell University, Cornell Tech \\ 
+         Urban Tech Hub, \href{https://irl.tech.cornell.edu}{Interaction Research Lab (IRL),\\ \href{https://dli.tech.cornell.edu}{Digital Life Initiative} (DLI)}
+    \end{minipage}
+    \begin{minipage}[t]{0.39\textwidth}
+        % contact info details, right-aligned
+        \flushright{}
+        \href{mailto:howdy@mfranchi.net}{howdy [at] mfranchi [dot] net} \\
+        \href{https://mfranchi.net}{mfranchi [dot] net} \\ 
+        New York, New York
+    \end{minipage}
+
+
+    \section*{Education}
+
+    \begin{tabular}{r| l l}
+    Ph.D. & Computer Science, Cornell University & 2022--2028 \\
+    & \textit{Advising Committee:} Wendy Ju (Chair), Helen Nissenbaum (Co-Chair),\\
+    & \hspace{9em}Wenfei Xu (Minor), Emma Pierson (Adt.) \\
+    & \\
+    M.S. & Computer Science, Cornell University & 2022--2024 \\
+    B.S.H. & Computer Science, Clemson University & 2019--2021 \\
+    \end{tabular}
+
+    \ifshowresearch
+    \section*{Research Area}
+        I am developing a novel method for the characterization of cities, called \textit{\textbf{autoglancing}}. Autoglancing is situated at the intersection of urban sensing, machine learning, and artificial intelligence, and draws from the urban science literature. Autonomous vehicles, dashboard-mounted cameras, and smart accessories are producing a rich data stream of \textit{temporally and spatially dense} street imagery (DSI) for the study of cities. Here, dense means many images both across the city and throughout the day. Artificial intelligence and machine learning methods make insights in this data stream extractable. My PhD work demonstrates use cases of autoglancing with DSI, including the sousveillance of police vehicles, identifying longitudinal distributions of sidewalk scaffolding, fingerprinting urban traffic, and predicting urban flash flooding. I also research the ethical use of dense street imagery and appropriate information flows. I am now at the stage of dissertation formulation, and seek to more formally situate autoglancing as a useful and extensible tool for stakeholders, including researchers, governments, and urban tech companies.
+
+    \section*{Doctoral Committee}
+    \begin{tabular}{l | l}
+    Wendy Ju & Bowers CIS @ Cornell Tech \\ 
+    Emma Pierson & EECS @ University of California, Berkeley \\ 
+    Wenfei Xu & Art, Architecture \& Planning @ Cornell University \\ 
+    \end{tabular}
+
+    \section*{Skills \& Knowledge}
+     Computational social science, urban \& geospatial data science, Python, statistical machine learning, Bayesian modeling, efficient analysis of big data, high-performance computing, urban sensing, mapping \& geospatial visualization, computer vision, applying artificial intelligence models. \newline
+
+    Cities, the history of the city, public transportation, micromobility, on-edge computing. \newline
+
+    Piano, composition, music production, AI-assisted web design, electronic music, fashion
+
+    %\begin{itemize}
+
+        %\item Urban data science, large-scale dashcam data
+        %\item Computer vision, urban technology 
+        %\item Inequity, computational social science
+
+    %\end{itemize}
+
+
+    \clearpage 
+    \fi
+    \section*{Publications}
+
+    \subsection*{Conference Proceedings}
+
+    \begin{tablist}
+
+        \item[2025.e] \tab{}Kenshikimyo Terao, Ilan Mandel, \textbf{Matt Franchi}, Chishang Mario Yang, Mark Colley, and Wendy Ju. "Evaluating Interfaces for Non-Driving Related Tasks While Operating an E-Scooter". In Proceedings of the 17th International ACM Conference on Automotive User Interfaces (Automotive UI). 
+
+        \item[2025.d] \tab{}\textbf{Matt Franchi}, Nikhil Garg, Wendy Ju, and Emma Pierson. "Bayesian Modeling of Zero-Shot Classifications for Urban Flood Detection". Under Consideration, Nature Communications. \href{https://arxiv.org/abs/2503.14754}{arxiv.org/abs/2503.14754}.
+
+        \item[2025.c] \tab{}\textbf{Matt Franchi}, Hauke Sandhaus, Madiha Zahrah Choksi, Severin Engelmann, Wendy Ju, and Helen Nissenbaum. "Privacy of Groups in Dense Street Imagery". In Proceedings of the 2025 ACM Conference on Fairness, Accountability, and Transparency (FAccT). Association for Computing Machinery, New York, NY, USA.
+        \newline\href{https://dsi.tech.cornell.edu}{\textit{dsi.tech.cornell.edu}}
+
+        \item[2025.b] \tab{}Dorin Shapira, \textbf{Matt Franchi}, and Wendy Ju. “Fingerprinting New York City's Scaffolding Problem with Longitudinal Dashcam Data". 19th International Conference on Computational Urban Planning and Urban Management (CUPUM). University College London, London, England. 
+
+        \item[2025.a] \tab{}\textbf{Matt Franchi}, Maria-Teresa Parreira, Frank Bu, and Wendy Ju. "The Robotability Score: Enabling Harmonious Robot Navigation on Urban Streets". In Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems (CHI '25). Association for Computing Machinery, New York, NY, USA. \newline\href{https://robotability.cornell.edu}{\textit{robotability.cornell.edu}}
+        \item[\rule{2em}{0.4pt}]
+    
+        \item[2024.a] \tab{}\textbf{Matt Franchi}, Debargha Dey, and Wendy Ju. "Towards Instrumented Fingerprinting of Urban Traffic: A Novel Methodology using Distributed Mobile Point-of-View Cameras". In Proceedings of the 16th International ACM Conference on Automotive User Interfaces (AutomotiveUI). Association for Computing Machinery, New York, NY, USA. \newline \textbf{Best Paper Honorable Mention} 
+    
+        %\item[2024.a] \tab{}Dorin Shapira, \textbf{Matt Franchi} and Wendy Ju. “Fingerprinting New York City's Scaffolding Problem with Longitudinal Dashcam Data.” ArXiv abs/2402.06801 (2024)
+
+        \item[\rule{2em}{0.4pt}]
+        
+        \item[2023.a] \tab{}\textbf{Matt Franchi}, J.D. Zamfirescu-Pereira, Wendy Ju, and Emma Pierson. 2023. "Detecting disparities in police deployments using dashcam data." In Proceedings of the 2023 ACM Conference on Fairness, Accountability, and Transparency (FAccT). Association for Computing Machinery, New York, NY, USA, 534-–544. 
+
+        \item[\rule{2em}{0.4pt}]
+
+        \item[2022.b] \tab{}\textbf{Matt Franchi}, Rebecca Kahn, Mashrur Chowdhury, Sakib Khan, Ken Kennedy, Linh Ngo, Amy Apon. 2022. "Webots.HPC: A Parallel Simulation Pipeline for Autonomous Vehicles." In Practice and Experience in Advanced Research Computing 2022: Revolutionary: Computing, Connections, You (PEARC). Association for Computing Machinery, New York, NY, USA, Article 31, 1–4.
+
+        \item[2022.a] \tab{}\textbf{Matt Franchi}, Rebecca Kahn, Linh B Ngo, Sakib Khan, Mashrur Chowdhury, Ken Kennedy, Amy Apon. "A Parallel Autonomous Vehicle Simulation Pipeline on High-Performance Computing." Compendium of the Transportation Research Board 101st Annual Meeting. Washington, DC: Transportation Research Board. 
+
+    \end{tablist}
+
+    \subsection*{Workshops \& Symposia}
+    \begin{tablist}
+        \item[2025.c] \tab{}\textbf{Matt Franchi}, Anthony Townsend, Edyta Bogucka, Daniele Quercia. (In Organizer Role) Assessing and Communicating the Risks of Urban AI. New York, New York. \href{https://luma.com/vrwpgt02}{Link.}
+        \item[2025.b] \tab{}\textbf{Matt Franchi} and Hauke Sandhaus. Contextual Integrity Use Case: Dense Street Imagery. 7th Annual PrivaCI Symposium. Brussels, Belgium. 
+        \item[2025.a] \tab{}Hauke Sandhaus, \textbf{Matt Franchi}, Madiha Zahrah Choksi, Severin Engelmann, Wendy Ju, and Helen Nissenbaum. Privacy in Dense Street Imagery: From Face Blurring to Appropriate Flow of Spatio-Temporal Information. 7th Annual PrivaCI Symposium. Brussels, Belgium.
+    \end{tablist}
+
+    \subsection*{Datasets}
+    \begin{tablist}
+        \item[2024.a] \tab{}\textbf{Matt Franchi}, J.D. Zamfirescu-Pereira, Wendy Ju, and Emma Pierson. 2024. "Replication Data for: Detecting disparities in police deployments using dashcam data (FAccT'23)", Harvard Dataverse, V1. \newline A 10\% random and anonymized sample (2.4 million images) of a dashcam image dataset spanning \newline New York City limits during 2020.
+    \end{tablist}
+
+    %\clearpage
+     
+    \subsection*{Reports and Other Publications}
+
+    \begin{tablist}
+
+        \item[2026.a] \tab{}Matt Franchi and Michael Samuelian. "5 Surprising Truths About How NYC Really Works, Revealed by Student Deep-Dives into its Community Districts." \href{https://concreteandcode.substack.com/p/5-surprising-truths-about-how-nyc}{Concrete \& Code}.
+
+        \item[2025.b] \tab{}Matt Franchi. "Sensing AI Incidents \& Risks from Global News." \href{https://mfranchi.net/posts/uair-brief/}{https://mfranchi.net}
+
+        \item[2025.a] \tab{}Matt Franchi. "Digital Eyes on the Street." \href{https://dli.tech.cornell.edu/post/digital-eyes-on-the-street}{https://dli.tech.cornell.edu}.
+
+        \item[2024.a] \tab{}Matt Franchi. "Estimating the Perceived Claustrophobia of New York City's Streets." \href{https://mfranchi.net/posts/claustrophobic-streets/}{https://mfranchi.net}.
+
+    \end{tablist}
+
+   \clearpage
+    \section*{Op-Eds}
+        \begin{tablist}
+
+            \item[2026.a] \tab{}"How dashcams revealed 10\% of sidewalk sheds are illegal", Michael Samuelian and \textbf{Matt Franchi}. \href{https://nypost.com/2026/02/13/opinion/how-to-shed-those-ugly-sheds-and-see-paradise-by-the-dashboard-camera/}{New York Post.}
+            
+        \end{tablist}
+   
+    \section*{Press}
+        \begin{tablist}
+
+            \item[2025.c] \tab{}"This Company Turns Dashcams into ‘Virtual CCTV Cameras.’ Then Hackers Got In" Joseph Cox, 404 Media. \href{https://www.404media.co/this-company-turns-dashcams-into-virtual-cctv-cameras-then-hackers-got-in/}{404media.co.}
+            \item[2025.b] \tab{}"The Truth About Burning Waymos." Taylor Lorenz, User Magazine. \href{https://www.youtube.com/watch?v=pTOPOinAy_I&t=368s}{video.}
+
+            \item[2025.a] \tab{}"'Robotability Score' Ranks NYC Streets for Robot Deployment, Patricia Waldron, Cornell Chronicle, ACM TechNews feature. \href{https://news.cornell.edu/stories/2025/04/robotability-score-ranks-nyc-streets-future-robot-deployment}{https://news.cornell.edu}
+
+            \item[\rule{2em}{0.4pt}]
+            
+            \item[2024.d] \tab{}”Think N.Y.C.’s Roads Are Crowded? Good Luck on the Sidewalks.” The New York Times. \href{https://www.nytimes.com/2024/07/29/nyregion/street-wars-crowded-sidewalks-times-square.html}{https://www.nytimes.com}
+
+            \item[2024.c] \tab{}”Most claustrophobic areas in NYC based on sidewalks: Study”. Fox 5 NY. \href{https://www.fox5ny.com/news/here-most-crowded-sidewalks-nyc}{https://fox5ny.com} 
+
+            \item[2024.b] \tab{}"Study looks at 'claustrophobic' city sidewalks". NY1 News. \href{https://ny1.com/nyc/all-boroughs/CTV/2024/08/03/study-looks-at--claustrophobic--city-sidewalks.}{https://ny1.com}
+
+            \item[2024.a] \tab{}"New York City is covered in illegal scaffolding". The Economist. \href{https://www.economist.com/science-and-technology/2024/03/13/new-york-city-is-covered-in-illegal-scaffolding}{https://economist.com}
+
+            \item[\rule{2em}{0.4pt}]
+
+            \item[2023.b] \tab{}”The NYPD doesn’t report where it deploys police. So scientists used AI, dashcams to find out.”. The Gothamist. \href{https://gothamist.com/news/nypd-does-not-report-where-it-deploys-police-scientists-used-ai-dashcams-to-find-out}{https://gothamist.com}
+
+            \item[2023.a] \tab{} ”Dashcam images reveal where police are deployed”. The Cornell Chronicle. \href{https://news.cornell.edu/stories/2023/07/dashcam-images-reveal-where-police-are-deployed}{https://news.cornell.edu}
+
+            \item[\rule{2em}{0.4pt}]
+
+            \item[2021.a] \tab{} "To Gen Zers Working From Home, the Office Is a Remote Concept". The Wall Street Journal. \href{https://www.wsj.com/articles/to-gen-zers-working-from-home-the-office-is-a-remote-concept-11629538204}{https://wsj.com}
+            
+        \end{tablist}
+        
+    \section*{Invited Talks}
+
+    \begin{tablist}
+
+        \item[2025.b] \tab{} "Privacy of groups in dense street imagery." Digital Life Initiative Seminar, New York, New York. 
+
+        \item[2025.a] \tab{} "SpaceStager.NYC". 2025 Siegal PiTech PhD Showcase. New York, New York. 
+
+        \item[2024.d] \tab{} "Detecting urban floods from dashcam data with vision language models". 2024 Urban Tech Summit. New York, New York. 
+
+        \item[2024.c] \tab{} "EAAMO Bridges: An introduction to EAAMO’s semester-long working groups". 2024 ACM conference on Equity and Access in Algorithms, Mechanisms, and Optimization (EAAMO).
+
+        \item[2024.b] \tab{} "Novel Approaches to Studying the Law Enforcement Investigatory Process". 2024 Association for Psychological Science (APS) Annual Convention. 
+
+        \item[2024.a] \tab{} NYC Transportation Data Connect Symposium. NYC Mayor's Office, The Microsoft Garage. \href{https://urban.tech.cornell.edu/hownycmoves/}{https://urban.tech.cornell.edu/hownycmoves/}. 
+
+    \end{tablist}
+    \clearpage
+
+    \section*{Grants and Awards}
+    
+    %\subsection*{Awards and Honors}
+
+    \begin{tablist}
+        \item[2025] \tab{}Siegel PiTech PhD Impact Fellowship, Design Trust for Public Space
+        \item[2024] \tab{}Digital Life Initiative (DLI) Doctoral Fellowship 
+        \item[2024] \tab{}Finalist, Cornell Tech Urban Tech Hub Pilot Policy Studio 
+        \item[2022] \tab{}Cornell Mary E. and Anna K. Cunningham Fellowship 
+        \item[2022] \tab{}Cornell Dean's Excellence Fellowship 
+        \item[2021] \tab{}Clemson University DuPont Best Undergraduate Award  
+        \item[2021] \tab{}Clemson University CECAS Summer Research Opportunity Grant 
+        \item[2020] \tab{}Tutor of the Month, Clemson Academic Success Center 
+        \item[2019] \tab{}President's List - All 4 Undergraduate Semesters
+
+    \end{tablist}
+
+    %\clearpage
+    \section*{Leadership and service}
+    \subsection*{Service to the university}
+    \subsubsection{Cornell University}
+    \begin{tablist}
+        \item[2025] Reviewer, PhD Admissions Committee
+        \item[2024] Organizer, Cornell Urban Data Science Reading Group 
+        \item[2023] Vice President, Cornell Computer Science Graduation Organization (CSGO)
+        \item[2023] CS Representative, Cornell Graduate Student Assembly (GPSA)
+        \item[2022] Pen-pal, Cornell Write-A-Researcher
+    \end{tablist}
+        
+    \subsubsection{Clemson University}
+    \begin{tablist} 
+        \item[2021] Board Representative, Clemson University Student Government 
+        \item[2021] School of Computing Representative, CECAS Student Advisory Board 
+        \item[2020] Board Member, Information Technology Student Advisory Board
+        \item[2019] Secretary, Clemson Piano Club 
+    \end{tablist} 
+
+    \subsection*{Other academic service}
+    \begin{tablist}
+        \item[2024-] Organizer, EAAMO urban data science working group
+    \end{tablist}
+
+    \subsection*{Peer Review} 
+
+    \begin{tablist} 
+        \item[2026] Reviewer, ACM Conference on Designing Interactive Systems (DIS)
+        \item[2026] Reviewer, ACM Conference on Fairness, Accountability, and Transprency (FAccT)
+        \item[2025] Reviewer, IEEE Security \& Privacy Special Issue on Contextual Integrity
+        \item[2025] Reviewer, ACM Conference on Human Factors in Computing Systems (CHI)
+        \item[2025] Program committee member, ACM Conference on Equity and Access in Algorithms, Mechanisms, and Optimization (EAAMO)
+        \item[2025] Program committee member, ACM Conference on Fairness, Accountability, and Transparency (FAccT)
+        \item[2024] Reviewer, ACM Transactions on Multimedia Computing, Communications, and Applications (TOMM)
+        \item[2024] Program committee member, ACM Conference on Fairness, Accountability, and Transparency (FAccT)
+        \item[2023] Program committee member, ACM Conference on Fairness, Accountability, and Transparency (FAccT) 
+    
+    \end{tablist}
+
+    \section*{Memberships}
+
+    \begin{itemize}
+        \item Equity and Access in Algorithms, Mechanisms, and Optimization (EAAMO)
+        \item Association for Computing Machinery 
+        \item Queer in AI
+        \item Digital Life Initiative 
+        \item Cornell Tech Urban Tech Hub
+        \item Omicron Delta Kappa 
+        \item Upsilon Pi Epsilon Computing Honors Society 
+
+    \end{itemize}
+    
+    \section*{Assistantships}
+
+    \subsection*{Cornell University}
+    \begin{tablist} 
+        \item[2026.b] Teaching Assistant, Urban Design Strategies with Dr. Ariel Noyman
+        \item[2026.a] Graduate Research Assistant, with Dr. Helen Nissenbaum
+        \item[2025.c] Teaching Assistant, Urban Systems with Prof. Michael Samuelian
+        \item[2025.b] Teaching Assistant, Urban Design Strategies with Dr. Ariel Noyman
+        \item[2025.a] Teaching Assistant, Smart Cities with Dr. Anthony Townsend 
+        \item[2024.c] Teaching Assistant, Urban Systems with Prof. Michael Samuelian 
+        \item[2024.b] Teaching Assistant, Introduction to Computer Vision with Dr. Noah Snavely 
+        \item[2024.a] Graduate Research Assistant, with Dr. Emma Pierson 
+        \item[2023.b] Teaching Assistant, Applied Machine Learning with Dr. Volodymyr Kuleshov
+        \item[2023.a] Elective Teaching Assistant, Building Startup Systems with Prof. Danny Perez 
+        \item[2022.a] Research Assistant, with Dr. Wendy Ju and Dr. Emma Pierson
+    \end{tablist} 
+
+    \subsection*{Clemson University} 
+    \begin{tablist}
+        \item[2021.a] Research Assistant, with Dr. Amy Apon and BMW IT Research Center (REU)
+        \item[2020.a] Teaching Assistant, Computer Science II
+        \item[2019.a] Computer Science Tutor, Academic Success Center 
+
+    \end{tablist}
+
+    
+    \section*{Professional Employment}
+
+    \begin{tablist}
+        \item[2025] \tab{}PiTech Fellow, Design Trust for Public Space, New York, New York
+        \item[2024-25] \tab{}Research Fellow, Hayden AI, San Francisco, California 
+        \item[2023] \tab{}Chief Engineer, Generative AI \& Fashion, ARI (stealth startup), New York, New York
+        \item[2023] \tab{}Fashion Model, HOMME Management, New York, New York
+        \item[2022] \tab{}Computer Science, Math, Physics Tutor, Capabilities, Charleston, South Carolina 
+        \item[2021-22] \tab{}Software Engineer, High Side Technology, Charleston, South Carolina 
+        \item[2020-21] \tab{}Computer Scientist Intern, High Side Technology, Charleston, South Carolina 
+
+    \end{tablist}
+
+
+
+    % display today's date as Month Year after a vertical space below the end of the text
+    \begin{center}
+        \vfill
+        Updated \monthyeardate\today
+    \end{center}
+
+\end{document}
