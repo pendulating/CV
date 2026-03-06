@@ -1,0 +1,198 @@
+\documentclass[10pt,letterpaper]{report}
+
+\usepackage{fontspec}
+\setmainfont{GTZirkon}[
+    Path = fonts/ ,
+    UprightFont = *-Book,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic
+]
+
+%\usepackage[T1]{fontenc} % output T1 font encoding (8-bit) for accented characters as single glyph
+\usepackage[strict,autostyle]{csquotes} % smart and nestable quote marks
+\usepackage[USenglish]{babel} % regionalize hyphens, quote marks, etc automatically
+\usepackage{microtype}% improve text appearance with kerning, etc
+\usepackage{datetime} % enable formatting of date output
+\usepackage{tabto}    % make nice tabbing
+\usepackage{hyperref} % enable hyperlinks and pdf metadata
+\usepackage{geometry} % manually set page margins
+\usepackage{enumitem} % enumerate with [resume] option
+\usepackage{titlesec} % allow custom section fonts
+\usepackage{setspace} % custom line spacing
+
+% what is your name?
+\newcommand{\myname}{{Matt Franchi}}
+
+% how far to tab for list items with left-aligned date: different fonts need different widths
+\newcommand{\listtabwidth}{1.7cm}
+
+% define font to use as document's title
+\newcommand{\namefont}[1]{{\normalfont\bfseries\Huge{#1}}}
+
+% set section heading fonts and before/after spacing
+\titleformat{\section}{\lsstyle\bfseries\uppercase}{}{}{}{}
+\titlespacing{\section}{0pt}{20pt plus 4pt minus 4pt}{6pt plus 2pt minus 2pt}
+
+% set subsection heading fonts and before/after spacing
+\titleformat{\subsection}{\lsstyle\bfseries}{}{}{}{}
+\titlespacing{\subsection}{0pt}{10pt plus 4pt minus 4pt}{4pt plus 2pt minus 2pt}
+
+% set page margins (tighter for compact layout)
+\geometry{body={6.5in, 9.5in},
+    left=1.0in,
+    top=0.75in}
+
+% prevent paragraph indentation
+\setlength\parindent{0em}
+
+% set line spacing
+\setstretch{1}
+
+% define space between list items
+\newcommand{\listitemspace}{0.15em}
+
+% make unordered lists without bullets and use compact spacing
+\renewenvironment{itemize}
+{\begin{list}{}{\setlength{\leftmargin}{0em}
+                \setlength{\parskip}{0em}
+                \setlength{\itemsep}{\listitemspace}
+                \setlength{\parsep}{\listitemspace}}}
+{\end{list}}
+
+% make tabbed lists so content is left-aligned next to years
+\TabPositions{\listtabwidth}
+\newlist{tablist}{description}{3}
+\setlist[tablist]{leftmargin=\listtabwidth,
+    labelindent=0em,
+    topsep=0em,
+    partopsep=0em,
+    itemsep=\listitemspace,
+    parsep=\listitemspace,
+    font=\normalfont}
+
+% print only the month and year when using \today
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
+
+% define hyperlink appearance and metadata for pdf properties
+\hypersetup{
+    colorlinks  = true,
+    urlcolor    = black,
+    citecolor   = black,
+    linkcolor   = black,
+    pdfauthor   = {\myname},
+    pdfkeywords = {},
+    pdftitle    = {\myname: Curriculum Vitae},
+    pdfsubject  = {Curriculum Vitae},
+    pdfpagemode = UseNone
+}
+
+\begin{document}
+    \raggedright{}
+
+    % display your name as the document title
+    \namefont{\myname}
+
+    % affiliation and contact info blocks
+    \vspace{1em}
+    \begin{minipage}[t]{0.6\textwidth}
+         Cornell University, Cornell Tech \\ 
+         Urban Tech Hub, \href{https://irl.tech.cornell.edu}{Interaction Research Lab (IRL),\\ \href{https://dli.tech.cornell.edu}{Digital Life Initiative} (DLI)}
+    \end{minipage}
+    \begin{minipage}[t]{0.39\textwidth}
+        \flushright{}
+        \href{mailto:howdy@mfranchi.net}{howdy [at] mfranchi [dot] net} \\
+        \href{https://mfranchi.net}{mfranchi [dot] net} \\ 
+        New York, New York
+    \end{minipage}
+
+
+    \section*{Education}
+
+    \begin{tabular}{r| l l}
+    Ph.D. & Computer Science, Cornell University & 2022--2028 (expected) \\
+    M.S. & Computer Science, Cornell University & 2022--2024 \\
+    B.S.H. & Computer Science, Clemson University & 2019--2021 \\
+    \end{tabular}
+
+    \section*{Research Interests}
+
+    Urban sensing, computer vision, and computational social science. Developing methods to extract actionable insights from dense street imagery using machine learning and AI, with applications to urban governance, privacy, and equity.
+
+    \section*{Skills}
+
+    Python, PyTorch, computer vision, Bayesian modeling, geospatial data science, statistical machine learning, high-performance computing, large-scale data pipelines, urban sensing
+
+    \section*{Publications}
+
+    \begin{tablist}
+
+        \item[2025] \tab{}Kenshikimyo Terao, Ilan Mandel, \textbf{Matt Franchi}, Chishang Mario Yang, Mark Colley, and Wendy Ju. ``Evaluating Interfaces for Non-Driving Related Tasks While Operating an E-Scooter.'' Automotive UI '25.
+
+        \item[2025] \tab{}\textbf{Matt Franchi}, Nikhil Garg, Wendy Ju, and Emma Pierson. ``Bayesian Modeling of Zero-Shot Classifications for Urban Flood Detection.'' Under review, Nature Communications. \href{https://arxiv.org/abs/2503.14754}{arXiv}.
+
+        \item[2025] \tab{}\textbf{Matt Franchi}, Hauke Sandhaus, Madiha Zahrah Choksi, Severin Engelmann, Wendy Ju, and Helen Nissenbaum. ``Privacy of Groups in Dense Street Imagery.'' FAccT '25.
+
+        \item[2025] \tab{}Dorin Shapira, \textbf{Matt Franchi}, and Wendy Ju. ``Fingerprinting New York City's Scaffolding Problem with Longitudinal Dashcam Data.'' CUPUM '25.
+
+        \item[2025] \tab{}\textbf{Matt Franchi}, Maria-Teresa Parreira, Frank Bu, and Wendy Ju. ``The Robotability Score: Enabling Harmonious Robot Navigation on Urban Streets.'' CHI '25.
+
+        \item[2024] \tab{}\textbf{Matt Franchi}, Debargha Dey, and Wendy Ju. ``Towards Instrumented Fingerprinting of Urban Traffic: A Novel Methodology using Distributed Mobile Point-of-View Cameras.'' AutomotiveUI '24. \textbf{Best Paper Honorable Mention.}
+
+        \item[2023] \tab{}\textbf{Matt Franchi}, J.D. Zamfirescu-Pereira, Wendy Ju, and Emma Pierson. ``Detecting Disparities in Police Deployments Using Dashcam Data.'' FAccT '23.
+
+        \item[2022] \tab{}\textbf{Matt Franchi}, Rebecca Kahn, Mashrur Chowdhury, Sakib Khan, Ken Kennedy, Linh Ngo, Amy Apon. ``Webots.HPC: A Parallel Simulation Pipeline for Autonomous Vehicles.'' PEARC '22.
+
+        \item[2022] \tab{}\textbf{Matt Franchi}, Rebecca Kahn, Linh B Ngo, Sakib Khan, Mashrur Chowdhury, Ken Kennedy, Amy Apon. ``A Parallel Autonomous Vehicle Simulation Pipeline on High-Performance Computing.'' TRB 101st Annual Meeting.
+
+    \end{tablist}
+
+    \section*{Research Experience}
+
+    \begin{tablist}
+        \item[2026] \tab{}Graduate Research Assistant, Cornell Tech, with Dr. Helen Nissenbaum
+        \item[2024] \tab{}Graduate Research Assistant, Cornell Tech, with Dr. Emma Pierson
+        \item[2022--24] \tab{}Research Assistant, Cornell Tech, with Dr. Wendy Ju and Dr. Emma Pierson
+        \item[2021] \tab{}Research Assistant (REU), Clemson University, with Dr. Amy Apon and BMW IT Research Center
+    \end{tablist}
+
+    \section*{Industry Experience}
+
+    \begin{tablist}
+        \item[2025] \tab{}PiTech Fellow, Design Trust for Public Space, New York, NY
+        \item[2024--25] \tab{}Research Fellow, Hayden AI, San Francisco, CA
+        \item[2021--22] \tab{}Software Engineer, High Side Technology, Charleston, SC
+    \end{tablist}
+
+    \section*{Selected Talks}
+
+    \begin{tablist}
+        \item[2025] \tab{}``Privacy of Groups in Dense Street Imagery.'' Digital Life Initiative Seminar, New York, NY.
+        \item[2024] \tab{}``Detecting Urban Floods from Dashcam Data with Vision Language Models.'' Urban Tech Summit, New York, NY.
+        \item[2024] \tab{}``Novel Approaches to Studying the Law Enforcement Investigatory Process.'' Association for Psychological Science (APS) Annual Convention.
+    \end{tablist}
+
+    \section*{Awards}
+
+    \begin{tablist}
+        \item[2025] \tab{}Siegel PiTech PhD Impact Fellowship, Design Trust for Public Space
+        \item[2024] \tab{}Best Paper Honorable Mention, ACM AutomotiveUI
+        \item[2024] \tab{}Digital Life Initiative (DLI) Doctoral Fellowship
+        \item[2022] \tab{}Cornell Dean's Excellence Fellowship
+        \item[2021] \tab{}Clemson University DuPont Best Undergraduate Award
+    \end{tablist}
+
+    \section*{Service}
+
+    \begin{tablist}
+        \item[2023--26] \tab{}Reviewer/PC: CHI, FAccT, EAAMO, DIS, IEEE S\&P, ACM TOMM
+        \item[2024--] \tab{}Organizer, EAAMO Urban Data Science Working Group
+        \item[2025] \tab{}Reviewer, Cornell CS PhD Admissions Committee
+    \end{tablist}
+
+    % display today's date as Month Year after a vertical space below the end of the text
+    \begin{center}
+        \vfill
+        Updated \monthyeardate\today
+    \end{center}
+
+\end{document}
